@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 
 // MARK: - Line 视图
@@ -47,7 +48,7 @@ struct BackgroundColor: ViewModifier {
     func body(content: Content) -> some View {
         content
             .overlay(
-                Color("background")
+				Color("dark_light")
                     .opacity(colorScheme == .dark ? opacity : 0)
                     .mask(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
                     .blendMode(.overlay)
@@ -159,108 +160,51 @@ extension View{
 
 // MARK: - toolbarTips
 
-struct TipsToolBarItemsModifier: ViewModifier{
+struct TipsToolBarItemsModifier: ViewModifier {
 	
-	@State private var errorAnimate1: Bool = false
-	@State private var errorAnimate2: Bool = false
-	@State private var errorAnimate3: Bool = false
-	
-	var isConnected:Bool
-	var isAuthorized:Bool
-	
-	let onAppearAction:() -> Void
+	@State private var errorAnimate: Bool = true
+	private let timer = Timer.publish(every: 1.0, on: .current, in: .common).autoconnect()
+	var isConnected: Bool
+	var isAuthorized: Bool
+	let onAppearAction: () -> Void
 	
 	func body(content: Content) -> some View {
 		content.toolbar {
-			Group{
-				
-				if !isConnected && isAuthorized{
-					ToolbarItem (placement: .topBarLeading){
-						Button {
-							onAppearAction()
-						} label: {
-							Image(systemName: "wifi.exclamationmark")
-								.foregroundStyle(.yellow)
-								.opacity(errorAnimate1 ? 1 : 0.1)
-								.onAppear{
-									withAnimation(Animation.bouncy(duration: 0.5).repeatForever()) {
-										self.errorAnimate1 = true
-									}
-								}
-								.onDisappear{
-									self.errorAnimate1 = false
-								}
-							
-						}
-						
-					}
-				}
-				
-				if !isAuthorized && isConnected {
-					
-					ToolbarItem (placement: .topBarLeading){
-						Button {
-							onAppearAction()
-						} label: {
-							Image(systemName: "bell.slash")
-								.foregroundStyle(.red)
-								.opacity(errorAnimate2 ? 0.1 : 1)
-								.onAppear{
-									withAnimation(Animation.bouncy(duration: 0.5).repeatForever()) {
-										self.errorAnimate2 = true
-									}
-								}
-								.onDisappear{
-									self.errorAnimate2 = false
-								}
-							
-						}
-						
-					}
-					
-					
-				}
-				
-				if !isAuthorized && !isConnected  {
-					
-					ToolbarItem (placement: .topBarLeading){
-						Button {
-							onAppearAction()
-						} label: {
-							
-							ZStack{
-								
-								Image(systemName: "bell.slash")
-									.foregroundStyle(.red)
-									.opacity(errorAnimate3 ? 0.1 : 1)
-								
-								Image(systemName: "wifi.exclamationmark")
-									.foregroundStyle(.yellow)
-									.opacity(errorAnimate3 ? 1 : 0.1)
-								
-							}
-							.onAppear{
-								withAnimation(Animation.bouncy(duration: 0.5).repeatForever()) {
-									self.errorAnimate3 = true
-								}
-							}
-							.onDisappear{
-								self.errorAnimate3 = false
+			ToolbarItem(placement: .topBarLeading) {
+				if !isConnected || !isAuthorized {
+					Button {
+						onAppearAction()
+					} label: {
+						HStack{
+							if !isConnected {
+								signSymbol(icon1: "network", icon2: "network.slash")
 							}
 							
-							
-							
+							if !isAuthorized {
+								signSymbol(icon1: "bell", icon2: "bell.slash")
+							}
 						}
-						
+						.onReceive(timer){ _ in
+							withAnimation(Animation.bouncy(duration: 0.5)) {
+								errorAnimate.toggle()
+							}
+						}
 					}
-					
-					
 				}
 			}
 		}
 	}
+	
+	@ViewBuilder
+	private func signSymbol(icon1: String, icon2: String) -> some View{
+		Image(systemName: errorAnimate ? icon1 : icon2)
+			.symbolRenderingMode(.palette)
+			.foregroundStyle(.red, .foreground)
+//			.contentTransition(.symbolEffect(.replace.downUp.byLayer))
+	}
+	
+	
 }
-
 
 extension View{
 	func tipsToolbar(wifi:Bool, notification:Bool , callback: @escaping () -> Void) -> some View{

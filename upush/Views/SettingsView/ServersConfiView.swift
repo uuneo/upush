@@ -1,6 +1,6 @@
 //
 //  ServersConfiView.swift
-//  Pushup
+//  upush
 //
 //  Created by He Cho on 2024/10/8.
 //
@@ -11,16 +11,16 @@ import Defaults
 struct ServersConfigView: View {
 	@Environment(\.dismiss) var dismiss
 	@Default(.servers) var servers
-	@Environment(PushupManager.self) private var manager
-
+	@Environment(UpushManager.self) private var manager
+	
 	@State private var showAction:Bool = false
 	@State private var isEditing:EditMode = .inactive
 	@State private var serverText:String = ""
 	@State private var serverName:String = ""
 	@State private var pickerSelect:requestHeader = .https
-
 	var showClose:Bool = false
-	
+	@State private  var animationError = false
+	private let timer = Timer.publish(every: 1.0, on: .current, in: .common).autoconnect()
 	var body: some View {
 		NavigationStack{
 			VStack{
@@ -28,7 +28,14 @@ struct ServersConfigView: View {
 				List{
 					
 					if isEditing == .active{
-						Section {
+						
+						VStack(alignment: .leading){
+							Text(String(localized: "新增服务器地址"))
+								.font(.body.bold())
+								.foregroundStyle(.gray)
+								.padding(.vertical, 10)
+								.transition(.slide)
+							
 							TextField(String(localized: "输入服务器地址"), text: $serverName)
 								.textContentType(.flightNumber)
 								.keyboardType(.URL)
@@ -37,20 +44,18 @@ struct ServersConfigView: View {
 								.padding(.leading, 100)
 								.overlay{
 									HStack{
-									
 										Picker(selection: $pickerSelect) {
 											Text(requestHeader.http.rawValue).tag(requestHeader.http)
 											Text(requestHeader.https.rawValue).tag(requestHeader.https)
 										}label:{}.pickerStyle(.automatic)
 											.frame(maxWidth: 100)
-											.offset(x:-30)
+											.offset(x:-20)
 										Spacer()
 									}
+									
 								}
 							
-						}header: {
-							Text(String(localized: "新增服务器地址"))
-						}footer: {
+							
 							HStack{
 								Button{
 									manager.webUrl = otherUrl.delpoydoc
@@ -70,22 +75,48 @@ struct ServersConfigView: View {
 									Text(String(localized: "恢复默认服务器"))
 										.font(.caption2)
 								}
-							}.padding(.vertical)
+								
+							}.padding(.vertical, 10)
 						}
+						.transition(.slide)
+						
 						
 						
 					}
-					
-					Spacer(minLength: 20)
-						.listRowBackground(Color.clear)
-						.listRowSeparator(.hidden)
 					
 					
 					
 					ForEach(servers, id: \.id){ item in
 						HStack(alignment: .center){
-							Image( item.status ? "online": "offline")
-								.padding(.horizontal,5)
+							VStack{
+								if item.status{
+									Image(systemName: "antenna.radiowaves.left.and.right")
+										.scaleEffect(1.5)
+										.symbolRenderingMode(.palette)
+										.foregroundStyle( Color.primary, .green)
+//										.symbolEffect(.variableColor.cumulative.dimInactiveLayers.reversing, options: .repeat(.continuous))
+									
+								}else{
+									Image(systemName: animationError ? "antenna.radiowaves.left.and.right" : "antenna.radiowaves.left.and.right.slash")
+										.scaleEffect(1.5)
+										.symbolRenderingMode(.palette)
+										.foregroundStyle(Color.primary, .red)
+//										.contentTransition(.symbolEffect(.replace.magic(fallback: .upUp.byLayer), options: .repeat(.periodic(delay: 1.0))))
+										
+									
+								}
+								
+							}
+							.padding(.horizontal,5)
+							.onReceive(timer) { _ in
+								if !item.status{
+									withAnimation {
+										self.animationError.toggle()
+									}
+								}
+								
+							}
+							
 							VStack{
 								HStack(alignment: .bottom){
 									Text(String(localized: "服务器") + ":")
@@ -110,6 +141,9 @@ struct ServersConfigView: View {
 							}
 							Spacer()
 							Image(systemName: "doc.on.doc")
+								.symbolRenderingMode(.palette)
+								.foregroundStyle( .tint, Color.primary)
+//								.symbolEffect(.bounce.down.byLayer, options: .repeat(.periodic(delay: 1.0)))
 								.onTapGesture{
 									Toast.shared.present(title: String(localized: "复制成功"), symbol: .copy)
 									manager.copy( item.url + "/" + item.key)
@@ -138,7 +172,7 @@ struct ServersConfigView: View {
 								}else{
 									Toast.shared.present(title: String(localized: "操作成功"), symbol: .success)
 								}
-
+								
 								
 							}label: {
 								Text(String(localized: "重置Key"))
@@ -151,7 +185,7 @@ struct ServersConfigView: View {
 							if servers.count > 1{
 								servers.remove(atOffsets: indexSet)
 							}else{
-								Toast.shared.present(title:String(localized: "必须保留一个服务"), symbol: .info)
+								Toast.shared.present(title:String(localized: "必须保留一个服务"), symbol: .info, tint: .red)
 							}
 						}else{
 							Toast.shared.present(title:String(localized: "编辑状态"), symbol: .info)
@@ -162,11 +196,14 @@ struct ServersConfigView: View {
 					})
 					
 					
+					
 				}
 				.listRowSpacing(20)
+				.safeAreaPadding(.top, 20)
 				.refreshable {
 					// MARK: - 刷新策略
 					manager.registers()
+					Toast.shared.present(title:String(localized: "注册成功"), symbol: .success)
 				}
 				
 				
@@ -179,12 +216,18 @@ struct ServersConfigView: View {
 						manager.fullPage = .scan
 					} label: {
 						Image(systemName: "qrcode.viewfinder")
+							.symbolRenderingMode(.palette)
+							.foregroundStyle(.tint, Color.primary)
+//							.symbolEffect(.breathe.pulse.byLayer, options: .repeat(.continuous))
 					}
 					
 				}
 				
 				ToolbarItem {
-					EditButton()
+					withAnimation {
+						EditButton()
+					}
+					
 				}
 				
 				
@@ -222,10 +265,13 @@ struct ServersConfigView: View {
 			
 		}
 	}
-
+	
 }
 
 #Preview {
 	ServersConfigView()
-		.environment(PushupManager.shared)
+		.environment(UpushManager.shared)
 }
+
+
+

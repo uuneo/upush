@@ -1,6 +1,6 @@
 //
 //  PushServerInfo.swift
-//  Pushup
+//  upush
 //
 //  Created by He Cho on 2024/10/8.
 //
@@ -9,7 +9,7 @@ import Foundation
 import Defaults
 import SwiftUI
 
-struct PushServerModal: Codable, Identifiable,Equatable, Defaults.Serializable{
+struct PushServerModal: Codable, Identifiable,Equatable, Defaults.Serializable, Hashable{
 	var id:String = UUID().uuidString
 	var url:String
 	var key:String

@@ -1,6 +1,6 @@
 //
 //  Extension+.swift
-//  Pushup
+//  upush
 //
 //  Created by He Cho on 2024/10/8.
 //
@@ -377,4 +377,6 @@ extension Color {
 // Step 1: 定义通知名称
 extension Notification.Name {
 	static let messagePreview = Notification.Name("messagePreview")
+	static let imageFileCount = Notification.Name("imageFileCount")
 }
+

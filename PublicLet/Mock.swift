@@ -1,6 +1,6 @@
 //
 //  Mock.swift
-//  Pushup
+//  upush
 //
 //  Created by He Cho on 2024/10/8.
 //
@@ -68,7 +68,7 @@ struct PushExample:Identifiable {
 		
 		PushExample(header: String(localized:  "可对通知设置中断级别"),
 					footer:  """
-可选参数值：
+\(String(localized: "可选参数值"))：
 	active: \(String(localized: "默认值，系统会立即亮屏显示通知。" ))
 	timeSensitive:  \(String(localized: "时效性通知，可在专注模式下显示通知。" ))
 	passive：  \(String(localized: "仅添加到列表，不会亮屏提醒" ))

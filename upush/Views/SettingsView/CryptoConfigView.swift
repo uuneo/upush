@@ -10,11 +10,33 @@ import Defaults
 
 struct CryptoConfigView: View {
 	@Environment(\.dismiss) var dismiss
-	@Environment(PushupManager.self) private var manager
+	@Environment(UpushManager.self) private var manager
 	@Default(.cryptoConfig) var cryptoConfig
 	@Default(.servers) var servers
 	var expectKeyLength:Int {
 		cryptoConfig.algorithm.rawValue
+	}
+	
+	var labelIcoc:String{
+		switch cryptoConfig.algorithm{
+		case .AES128:
+			"gauge.with.dots.needle.bottom.0percent"
+		case .AES192:
+			"gauge.with.dots.needle.bottom.50percent"
+		case .AES256:
+			"gauge.with.dots.needle.bottom.100percent"
+		}
+	}
+	
+	var modeIcon:String{
+		switch cryptoConfig.mode{
+		case .CBC:
+			"circle.grid.cross.left.filled"
+		case .ECB:
+			"circle.grid.cross.up.filled"
+		case .GCM:
+			"circle.grid.cross.right.filled"
+		}
 	}
 	
 	
@@ -23,7 +45,13 @@ struct CryptoConfigView: View {
 			
 			
 			Section{
-				Picker(selection: $cryptoConfig.algorithm, label: Text(String(localized: "算法"))) {
+				Picker(selection: $cryptoConfig.algorithm, label:
+						Label(String(localized: "算法"), systemImage: labelIcoc)
+						.symbolRenderingMode(.palette)
+						.foregroundStyle( .tint, Color.primary)
+						
+				
+				) {
 					ForEach(CryptoAlgorithm.allCases,id: \.self){item in
 						Text(item.name).tag(item)
 					}
@@ -31,7 +59,12 @@ struct CryptoConfigView: View {
 			}
 			
 			Section {
-				Picker(selection: $cryptoConfig.mode, label: Text(String(localized:  "模式"))) {
+				Picker(selection: $cryptoConfig.mode, label:
+						Label(String(localized:  "模式"), systemImage: modeIcon)
+					.symbolRenderingMode(.palette)
+					.foregroundStyle( .tint, Color.primary)
+					
+				) {
 					ForEach(CryptoMode.allCases,id: \.self){item in
 						Text(item.rawValue).tag(item)
 					}
@@ -44,7 +77,9 @@ struct CryptoConfigView: View {
 					Label {
 						Text("Padding:")
 					} icon: {
-						Image(systemName: "space")
+						Image(systemName: "p.circle")
+							.symbolRenderingMode(.palette)
+							.foregroundStyle( Color.primary, .tint)
 					}
 					Spacer()
 					Text(cryptoConfig.mode.padding)
@@ -59,7 +94,9 @@ struct CryptoConfigView: View {
 					Label {
 						Text("Key：")
 					} icon: {
-						Image(systemName: "key")
+						Image(systemName: "key.radiowaves.forward.fill")
+							.symbolRenderingMode(.palette)
+							.foregroundStyle( Color.primary, .tint)
 					}
 					Spacer()
 					
@@ -93,6 +130,9 @@ struct CryptoConfigView: View {
 						Text("Iv：")
 					} icon: {
 						Image(systemName: "dice")
+							.symbolRenderingMode(.palette)
+							.foregroundStyle(.tint, Color.primary)
+							
 					}
 					Spacer()
 					
@@ -123,11 +163,13 @@ struct CryptoConfigView: View {
 				Button {
 					createCopyText()
 				} label: {
-					Text(String(localized:  "复制发送脚本"))
+					Label(String(localized:  "复制发送脚本"), systemImage: "document.on.document")
+						.symbolRenderingMode(.palette)
+						.foregroundStyle(.white, Color.primary)
+//						.symbolEffect(.bounce.down.byLayer, options: .repeat(.periodic(delay: 1.0)))
 						.padding(.horizontal)
 					
 				}.buttonStyle(BorderedProminentButtonStyle())
-				
 				
 				
 				Spacer()
@@ -191,7 +233,7 @@ struct CryptoConfigView: View {
 		
 		let text = """
 	 # Documentation: "https://alarmpaw.twown.com/#/encryption"
-	 # python demo: 使用AES加密数据，并发送到服务器
+	 # python demo: \(String(localized: "使用AES加密数据，并发送到服务器"))
 	 # pip3 install pycryptodome
 	 
 	 import json
@@ -203,12 +245,11 @@ struct CryptoConfigView: View {
 	 
 	 def encrypt_AES_CBC(data, key, iv):
 	 cipher = AES.new(key, AES.MODE_\(cryptoConfig.mode.rawValue), iv)
-	  padded_data = pad(data.encode(), AES.block_size)
-	  encrypted_data = cipher.encrypt(padded_data)
-	  return encrypted_data
+	 padded_data = pad(data.encode(), AES.block_size)
+	 encrypted_data = cipher.encrypt(padded_data)
+	 return encrypted_data
 	 
-	 
-	 # JSON数据
+	 # \(String(localized: "JSON数据"))
 	 json_string = json.dumps({"body": "test", "sound": "birdsong"})
 	 
 	 # \(String(format: String(localized: "必须%d位"), Int(cryptoConfig.algorithm.name.suffix(3))! / 8))
@@ -216,14 +257,14 @@ struct CryptoConfigView: View {
 	 # \(String(localized: "IV可以是随机生成的，但如果是随机的就需要放在 iv 参数里传递。"))
 	 iv= b"\(cryptoConfig.iv)"
 	 
-	 # 加密
+	 # \(String(localized: "加密"))
 	 # \(String(localized: "控制台将打印")) "\( self.createExample() )"
 	 encrypted_data = encrypt_AES_CBC(json_string, key, iv)
 	 
-	 # 将加密后的数据转换为Base64编码
+	 # \(String(localized: "将加密后的数据转换为Base64编码"))
 	 encrypted_base64 = base64.b64encode(encrypted_data).decode()
 	 
-	 print("加密后的数据（Base64编码）：", encrypted_base64)
+	 print("\(String(localized: "加密后的数据（Base64编码"))"）：", encrypted_base64)
 	 
 	 deviceKey = '\(servers[0].key)'
 	 
@@ -231,7 +272,6 @@ struct CryptoConfigView: View {
 	 params = {"ciphertext": encrypted_base64, "iv": iv})
 	 
 	 print(res.text)
-	 
 	 """
 		manager.copy(text)
 		Toast.shared.present(title: String(localized:  "复制成功"), symbol: .copy)
@@ -249,5 +289,5 @@ struct CryptoConfigView: View {
 
 #Preview {
 	CryptoConfigView()
-		.environment(PushupManager.shared)
+		.environment(UpushManager.shared)
 }

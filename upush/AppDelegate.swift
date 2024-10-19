@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  Pushup
+//  upush
 //
 //  Created by He Cho on 2024/10/8.
 //
@@ -38,7 +38,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
 			
 			Defaults[.deviceToken] = token
 			// MARK: 注册设备
-			PushupManager.shared.registers()
+			UpushManager.shared.registers()
 		}
 		
 		
@@ -127,6 +127,16 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
 		notificatonHandler(userInfo: notification.request.content.userInfo)
 		
 		HapticsManager.shared.complexSuccess()
+	
+		UIApplication.shared.inAppNotification { isShow in
+			let title =  notification.request.content.userInfo["url"] as? String
+			VStack{
+				if let title{
+					Text("\(title)")
+				}
+				
+			}
+		}
 		
 		
 		completionHandler(.badge)
@@ -149,10 +159,13 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
 		
 		// URL 直接打开
 		if let url = url {
-			PushupManager.shared.openUrl(url: url, unOpen: nil)
+			UpushManager.shared.openUrl(url: url, unOpen: nil)
 			return
 			
+			
 		}
+		
+		
 		
 	}
 	

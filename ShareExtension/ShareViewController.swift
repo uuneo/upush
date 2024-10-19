@@ -48,7 +48,7 @@ fileprivate struct ShareView: View {
 							VStack{
 								Image(uiImage: item.previewImage)
 									.resizable()
-									.aspectRatio(contentMode: .fit)
+									.aspectRatio(contentMode: .fill)
 									.padding(.horizontal, 15)
 									.frame(width: size.width)
 								
@@ -68,7 +68,7 @@ fileprivate struct ShareView: View {
 				}
 				.frame(height: 500)
 				.scrollIndicators(.hidden)
-				.scrollTargetBehavior(.paging)
+//				.scrollTargetBehavior(.paging)
 				.padding(.horizontal, -15)
 				
 				/// Save Button
@@ -115,9 +115,12 @@ fileprivate struct ShareView: View {
 		
 		Task{
 			for item in items{
-				await ImageManager.storeImage(data: item.imageData, key: item.id)
+				if let image = UIImage(data: item.imageData){
+					_ = await ImageManager.storeImage(from: UUID().uuidString, at: image)
+				}
+				
 			}
-		
+			
 			dismiss()
 			
 		}

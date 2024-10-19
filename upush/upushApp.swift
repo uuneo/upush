@@ -6,18 +6,20 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
-struct PushupApp: SwiftUI.App {
+struct upushApp: SwiftUI.App {
 	@UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-	var manager = PushupManager.shared
+	
+	var manager = UpushManager.shared
 	var body: some Scene {
 		WindowGroup {
 			RootView{
 				ContentView()
+					
 			}
 			.environment(manager)
-				
 		}
 	}
 }

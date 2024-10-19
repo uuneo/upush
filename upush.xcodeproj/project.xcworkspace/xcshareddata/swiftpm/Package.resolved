@@ -1,5 +1,5 @@
 {
-  "originHash" : "aa006adee4e0acd9e371097573124343c03c5e700151793e19d716fed8da4135",
+  "originHash" : "1182045067463c226299cd1acdf74ee3153693626096b967cf9e28d290579a1e",
   "pins" : [
     {
       "identity" : "defaults",
@@ -8,15 +8,6 @@
       "state" : {
         "branch" : "main",
         "revision" : "a89f799930c92a85aa04b72131849d46c0833ab3"
-      }
-    },
-    {
-      "identity" : "kingfisher",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/uuneo/Kingfisher.git",
-      "state" : {
-        "branch" : "master",
-        "revision" : "6fd05f7d8c0bc70fd5eaac93d239f186688fbf9a"
       }
     },
     {

@@ -1,6 +1,16 @@
 {
   "sourceLanguage" : "zh-Hans",
   "strings" : {
+    "" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " "
+          }
+        }
+      }
+    },
     " 删除成功" : {
       "localizations" : {
         "en" : {
@@ -16,7 +26,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ", which lasts no longer than 30 seconds."
+            "value" : ", less 30s."
           }
         }
       }
@@ -37,6 +47,26 @@
         }
       }
     },
+    "**重试**" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try again"
+          }
+        }
+      }
+    },
+    "%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
+    },
     "%@s" : {
       "localizations" : {
         "en" : {
@@ -52,7 +82,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$d minutes ago"
+            "value" : "%1$d m ago"
           }
         }
       }
@@ -62,7 +92,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$d hour %2$d minutes ago"
+            "value" : "%1$d h %2$d m ago"
           }
         }
       }
@@ -72,7 +102,17 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$d hours ago"
+            "value" : "%1$d h ago"
+          }
+        }
+      }
+    },
+    "%d张图片" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d photos"
           }
         }
       }
@@ -123,6 +163,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "IV can be randomly generated, but if it is random, it must be passed in the iv parameter."
+          }
+        }
+      }
+    },
+    "JSON数据" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "JSON Data"
           }
         }
       }
@@ -183,6 +233,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Invalid URL"
+          }
+        }
+      }
+    },
+    "一个6位数的代码已发送到您的邮箱" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A 6-digit code has been sent to your email address"
           }
         }
       }
@@ -257,6 +317,16 @@
         }
       }
     },
+    "不知道如何开始? **获取帮助**" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not sure how to get started? Get Help "
+          }
+        }
+      }
+    },
     "仅添加到列表，不会亮屏提醒" : {
       "localizations" : {
         "en" : {
@@ -277,6 +347,16 @@
         }
       }
     },
+    "使用AES加密数据，并发送到服务器" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Encrypt data using aes and send it to the server"
+          }
+        }
+      }
+    },
     "使用帮助" : {
       "localizations" : {
         "en" : {
@@ -292,7 +372,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "\"Usage example"
+            "value" : "Usage example"
           }
         }
       }
@@ -347,6 +427,9 @@
         }
       }
     },
+    "信息" : {
+
+    },
     "信息状态已更改" : {
       "localizations" : {
         "en" : {
@@ -357,12 +440,32 @@
         }
       }
     },
+    "修改" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change"
+          }
+        }
+      }
+    },
     "修改key" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Update key"
+          }
+        }
+      }
+    },
+    "修改Key" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change Key"
           }
         }
       }
@@ -393,6 +496,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mark all as read"
+          }
+        }
+      }
+    },
+    "关闭键盘" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
           }
         }
       }
@@ -467,15 +580,8 @@
         }
       }
     },
-    "删除以下时间的消息" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Delete messages from the following time"
-          }
-        }
-      }
+    "删除以下时间的信息!" : {
+
     },
     "删除全部已读" : {
       "localizations" : {
@@ -502,7 +608,17 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Deleted successfully"
+            "value" : "Deleted successful."
+          }
+        }
+      }
+    },
+    "加密" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "encipher"
           }
         }
       }
@@ -517,22 +633,22 @@
         }
       }
     },
+    "加密后的数据（Base64编码" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Encrypted data (base64 encoded"
+          }
+        }
+      }
+    },
     "危险操作！" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Danger!!!"
-          }
-        }
-      }
-    },
-    "历史图片" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "History images"
           }
         }
       }
@@ -587,6 +703,9 @@
         }
       }
     },
+    "只能导入.up结尾的JSON数据" : {
+
+    },
     "可以为推送设置不同的铃声" : {
       "localizations" : {
         "en" : {
@@ -613,6 +732,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Notification interruption level can be set"
+          }
+        }
+      }
+    },
+    "可选参数值" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Optional params"
           }
         }
       }
@@ -687,6 +816,15 @@
         }
       }
     },
+    "导入" : {
+
+    },
+    "导入成功" : {
+
+    },
+    "导入数据" : {
+
+    },
     "导出" : {
       "localizations" : {
         "en" : {
@@ -697,12 +835,28 @@
         }
       }
     },
+    "导出%d条通知消息" : {
+
+    },
+    "导出成功" : {
+
+    },
     "导出消息列表" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Export message list"
+          }
+        }
+      }
+    },
+    "将加密后的数据转换为Base64编码" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Converts the encrypted data to base64 encoding"
           }
         }
       }
@@ -772,7 +926,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "At least one service must be kept"
+            "value" : "Greater than 1"
           }
         }
       }
@@ -837,15 +991,8 @@
         }
       }
     },
-    "找到 %1$d 条数据" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Found %1$d records"
-          }
-        }
-      }
+    "找到%1$d条数据" : {
+
     },
     "持续响铃" : {
       "localizations" : {
@@ -987,6 +1134,12 @@
         }
       }
     },
+    "文件不存在" : {
+
+    },
+    "文件格式错误" : {
+
+    },
     "新增服务器地址" : {
       "localizations" : {
         "en" : {
@@ -1047,6 +1200,16 @@
         }
       }
     },
+    "更改服务器" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change server"
+          }
+        }
+      }
+    },
     "服务器" : {
       "localizations" : {
         "en" : {
@@ -1077,6 +1240,16 @@
         }
       }
     },
+    "本地化地址" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Localized address"
+          }
+        }
+      }
+    },
     "查看服务器部署教程" : {
       "localizations" : {
         "en" : {
@@ -1096,6 +1269,9 @@
           }
         }
       }
+    },
+    "标记" : {
+
     },
     "标题" : {
       "localizations" : {
@@ -1157,12 +1333,12 @@
         }
       }
     },
-    "没有消息" : {
+    "注册成功" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No messages"
+            "value" : "Register  Successfully"
           }
         }
       }
@@ -1196,6 +1372,9 @@
           }
         }
       }
+    },
+    "清空所有" : {
+
     },
     "清除" : {
       "localizations" : {
@@ -1257,6 +1436,16 @@
         }
       }
     },
+    "确认修改" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirm"
+          }
+        }
+      }
+    },
     "示例" : {
       "localizations" : {
         "en" : {
@@ -1313,16 +1502,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Algorithm setup"
-          }
-        }
-      }
-    },
-    "组已读" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Group as read"
           }
         }
       }
@@ -1452,7 +1631,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Please set the ringtone first"
+            "value" : " set ringtone first"
           }
         }
       }
@@ -1462,7 +1641,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Please register first"
+            "value" : "Register first"
           }
         }
       }
@@ -1477,12 +1656,22 @@
         }
       }
     },
+    "请输入邮件地址" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " email address Please"
+          }
+        }
+      }
+    },
     "转换成 caf 格式" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Convert to CAF format"
+            "value" : " CAF format"
           }
         }
       }
@@ -1506,6 +1695,19 @@
           }
         }
       }
+    },
+    "输入验证码" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter verification code"
+          }
+        }
+      }
+    },
+    "远程本地化地址: %1$@" : {
+
     },
     "选择" : {
       "localizations" : {
@@ -1532,7 +1734,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Notification ringtone will play for 30 seconds. If multiple are received, they will ring in sequence."
+            "value" : "Notification ringtone will play for 30s. If multiple are received, they will ring in sequence."
           }
         }
       }
@@ -1582,7 +1784,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Length cannot exceed 30 seconds"
+            "value" : "less 30s"
           }
         }
       }
@@ -1622,7 +1824,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Verification successful"
+            "value" : "Verification successful."
           }
         }
       }

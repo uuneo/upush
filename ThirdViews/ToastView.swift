@@ -1,6 +1,6 @@
 //
 //  ToastView.swift
-//  Pushup
+//  upush
 //
 //  Created by He Cho on 2024/10/10.
 //
@@ -9,7 +9,6 @@
 ///			Toast.shared.present	(
 ///				title: "AirPods Pro",
 ///				symbol: "airpodspro",
-///				isUserInteractionEnabled: true,
 ///				timing: .short
 ///			)
 ///		}
@@ -45,8 +44,14 @@ struct RootView<Content: View>: View {
 fileprivate class PassthroughWindow: UIWindow {
 	override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
 		guard let view = super.hitTest(point, with: event) else { return nil }
-		
+		//		return  view.subviews.count > 1 ? view : nil
+		if Toast.shared.toasts.count > 0{
+			withAnimation(.snappy) {
+				Toast.shared.toasts.removeAll()
+			}
+		}
 		return rootViewController?.view == view ? nil : view
+
 	}
 }
 
@@ -55,7 +60,7 @@ class Toast {
 	static let shared = Toast()
 	fileprivate var toasts: [ToastItem] = []
 	
-	func present(title: String, symbol: String?, tint: Color = .primary, isUserInteractionEnabled: Bool = true, timing: ToastTime = .medium) {
+	func present(title: String, symbol: String?, tint: Color = .primary, timing: ToastTime = .medium) {
 		
 		withAnimation(.snappy) {
 			toasts.append(
@@ -63,22 +68,20 @@ class Toast {
 					title: title,
 					symbol: symbol,
 					tint: tint,
-					isUserInteractionEnabled: isUserInteractionEnabled,
 					timing: timing
 				)
 			)
 		}
 	}
 	
-	func present(title: String, symbol: ToastSymbol?, tint: Color = .primary, isUserInteractionEnabled: Bool = true, timing: ToastTime = .medium) {
+	func present(title: String, symbol: ToastSymbol?, tint: Color = .primary, timing: ToastTime = .medium) {
 		
 		withAnimation(.snappy) {
 			toasts.append(
 				.init(
 					title: title,
 					symbol: symbol?.rawValue,
-					tint: tint,
-					isUserInteractionEnabled: isUserInteractionEnabled,
+					tint: symbol != nil ? symbol!.color  : tint,
 					timing: timing
 				)
 			)
@@ -92,7 +95,6 @@ fileprivate struct ToastItem: Identifiable {
 	var title: String
 	var symbol: String?
 	var tint: Color
-	var isUserInteractionEnabled: Bool
 	/// Timing
 	var timing: ToastTime = .medium
 }
@@ -109,6 +111,16 @@ enum ToastSymbol: String{
 	case question = "questionmark.circle.dashed"
 	case error = "xmark.app"
 	case copy = "document.on.document"
+	
+	var color:Color{
+		switch self {
+		case .success: .green
+		case .info: .orange
+		case .question: .pink
+		case .error: .gray
+		case .copy: .green
+		}
+	}
 }
 
 
@@ -125,8 +137,12 @@ fileprivate struct ToastGroup: View {
 						.scaleEffect(scale(toast))
 						.offset(y: offsetY(toast))
 						.zIndex(Double(model.toasts.firstIndex(where: { $0.id == toast.id }) ?? 0))
+						.onTapGesture {
+							debugPrint("点击了通知")
+						}
 				}
 			}
+			
 			.padding(.bottom, safeArea.top == .zero ? 15 : 10)
 			.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
 		}
@@ -156,35 +172,22 @@ fileprivate struct ToastView: View {
 				Image(systemName: symbol)
 					.font(.title3)
 					.padding(.trailing, 10)
+//					.symbolEffect(.wiggle.custom(angle: 45.0).byLayer, options: .repeat(.continuous))
 			}
 			
 			Text(item.title)
-				.lineLimit(1)
 		}
 		.foregroundStyle(item.tint)
 		.padding(.horizontal, 15)
 		.padding(.vertical, 8)
 		.background(
-			.white
+			.background
 				.shadow(.drop(color: .primary.opacity(0.06), radius: 5, x: 5, y: 5))
 				.shadow(.drop(color: .primary.opacity(0.06), radius: 8, x: -5, y: -5)),
 		   in: .capsule
 				
 		)
 		.contentShape(.capsule)
-		.gesture(
-			DragGesture(minimumDistance: 0)
-				.onEnded({ value in
-					guard item.isUserInteractionEnabled else { return }
-					let endY = value.translation.height
-					let velocityY = value.velocity.height
-					
-					if (endY + velocityY) > 100 {
-						/// Removing Toast
-						removeToast()
-					}
-				})
-		)
 		.onAppear {
 			guard delayTask == nil else { return }
 			delayTask = .init(block: {

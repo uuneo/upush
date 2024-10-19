@@ -3,40 +3,35 @@ import SwiftUI
 import RealmSwift
 
 struct SearchMessageView:View {
-	@Binding var searchText:String
+
+	var searchText: String
+	@ObservedResults(Message.self) var messages
 	
-	@ObservedResults(Message.self,
-					 sortDescriptor: SortDescriptor(keyPath: "createDate",
-													ascending: false)) var messages
+	init(searchText: String, group:String? = nil) {
+		self.searchText = searchText
+		if let group = group{
+			self._messages =  ObservedResults(Message.self, filter: NSPredicate(format: "(body CONTAINS[c] %@ OR title CONTAINS[c] %@) AND group CONTAINS[c] %@", searchText, searchText, group), sortDescriptor: SortDescriptor(keyPath: "createDate", ascending: false))
+		}else{
+			self._messages =  ObservedResults(Message.self, filter: NSPredicate(format: "body CONTAINS[c] %@ OR title CONTAINS[c] %@ OR group CONTAINS[c] %@", searchText, searchText, searchText), sortDescriptor: SortDescriptor(keyPath: "createDate", ascending: false))
+		}
+		
+	}
 	
 	var body: some View {
 		LazyVStack{
-			if let filterMessages = filterMessage(messages, searchText.trimmingCharacters(in: .whitespaces)) {
-				Text(String(format: String(localized: "找到 %1$d 条数据"), filterMessages.count))
+			HStack{
+				Text(String(format:String(localized: "找到%1$d条数据"), messages.count))
 					.foregroundStyle(.gray)
-				
-					ForEach(filterMessages, id: \.id) { message in
-						MessageView(message: message, searchText: searchText)
-					}
-				
-				
-			} else {
-				// MARK: - 查找数据
-				Text(String(format: String(localized: "找到 %1$d 条数据"), 0))
-					.foregroundStyle(.gray)
+					.padding(.leading)
+				Spacer()
+			}
+			
+			ForEach(messages, id: \.id) { message in
+				MessageView(message: message, searchText: searchText)
 			}
 		}
 	}
-	
-	func filterMessage(_ datas: Results<Message>, _ searchText:String)-> Results<Message>?{
-		
-		// 如果搜索文本为空，则返回原始数据
-		guard !searchText.isEmpty else {
-			return nil
-		}
-		
-		return datas.filter("body CONTAINS[c] %@ OR title CONTAINS[c] %@ OR group CONTAINS[c] %@", searchText, searchText, searchText)
-	}
+
 }
 
 

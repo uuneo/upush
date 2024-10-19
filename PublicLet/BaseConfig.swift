@@ -34,7 +34,7 @@ struct BaseConfig {
     static let  groupName = "group.upush"
     static let  settingName = "cryptoSettingFields"
     static let  deviceToken = "deviceToken"
-    static let  imageCache = "pushup"
+    static let  imageCache = "upush"
     static let  badgemode = "Meowbadgemode"
     static let  server = "serverArrayStroage"
     static let  defaultPage = "defaultPageViewShow"
@@ -50,10 +50,11 @@ struct BaseConfig {
     static let  kStopCallProcessorKey = "stopCallProcessorNotification"
     static let  Sounds = "Sounds"
     static let  isMessageStorage = "isMessageStorage"
-    static let  realmModalVersion:UInt64 = 20
+    static let  realmModalVersion:UInt64 = 21
     static let  defaultSound = "defaultSound"
     static let  activeAppIcon = "setting_active_app_icon"
     static let 	customPhotoName = "CustomPhotoName"
+	static let 	imagsList = "customImagesCache"
 }
 
 

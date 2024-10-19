@@ -1,115 +1,266 @@
 //
 //  ImageManager.swift
-//  Pushup
+//  upush
 //
-//  Created by He Cho on 2024/10/8.
+//  Created by He Cho on 2024/10/14.
 //
+
 import SwiftUI
-import Kingfisher
+import CryptoKit
+import Defaults
 
-final class ImageManager{
+let DEFAULTSTORE2 = UserDefaults(suiteName: BaseConfig.groupName)!
+
+extension Defaults.Keys{
+	static let images = Key<[String]>("imagesCache", default: [], suite: DEFAULTSTORE2 )
+}
+
+
+class ImageManager {
 	
-	/// 获取图片缓存
-	private	static func getCache() -> ImageCache?{
-		guard let groupUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: BaseConfig.groupName),
-			  let cache = try? ImageCache(name: "shared", cacheDirectoryURL: groupUrl) else { return nil }
-		return cache
-	}
-	
-	/// 缓存图片
-	/// - Parameters:
-	/// 	- data: 二进制数据
-	/// 	- key:  缓存key
-	static func storeImage(data:Data, key:String) async{
-		guard let cache = getCache() else { return }
-			await storeImage(cache: cache, data: data, key: key)
-	}
-	
-	static func getImage(key:String) -> String?{
-		guard let cache = getCache() else { return nil }
-		return cache.diskStorage.isCached(forKey: key) ? cache.cachePath(forKey: key) : nil
-	}
-	
-	/// 保存图片到缓存中
-	/// - Parameters:
-	///   - cache: 使用的缓存
-	///   - data: 图片 Data 数据
-	///   - key: 缓存 Key
-	static  func storeImage(cache: ImageCache, data: Data, key: String) async {
-		return await withCheckedContinuation { continuation in
-			cache.storeToDisk(data, forKey: key, expiration: StorageExpiration.never) { _ in
-				continuation.resume()
-			}
+	// Public method to retrieve or download an image
+	class func fetchImage(from url: String) async -> String? {
+		// First, check if the image already exists in the local cache
+		if let cachedImage = await loadImageFromCache(for: url) {
+			print("Image loaded from cache for URL: \(url)")
+			return cachedImage
 		}
-	}
-	
-	/// 使用 Kingfisher.ImageDownloader 下载图片
-	/// - Parameter url: 下载的图片URL
-	/// - Returns: 返回 Result
-	static  func downloadImage(url: URL) async -> Result<ImageLoadingResult, KingfisherError> {
-		return await withCheckedContinuation { continuation in
-			Kingfisher.ImageDownloader.default.downloadImage(with: url, options: nil) { result in
-				continuation.resume(returning: result)
-			}
-		}
-	}
-	
-	
-	
-	
-	/// 下载推送图片
-	/// - Parameter imageUrl: 图片URL字符串
-	/// - Returns: 保存在本地中的`图片 File URL`
-	class func downloadImage(_ imageUrl: String) async -> String? {
-		guard let cache = getCache(), let imageResource = URL(string: imageUrl)  else {
+		
+		// If the image doesn't exist locally, download it from the URL
+		guard let image = await downloadImage(url),
+			  let fileUrl = await storeImage(from: url, at: image)
+		else {
+			print("Failed to download image from URL: \(url)")
 			return nil
 		}
 		
-		// 先查看图片缓存
-		if cache.diskStorage.isCached(forKey: imageResource.cacheKey) {
-			return cache.cachePath(forKey: imageResource.cacheKey)
-		}
-		
-		// 下载图片
-		guard let result = try? await downloadImage(url: imageResource).get() else {
-			return nil
-		}
-		// 缓存图片
-		await storeImage(cache: cache, data: result.originalData, key: imageResource.cacheKey)
-		
-		return cache.cachePath(forKey: imageResource.cacheKey)
+		return fileUrl
 	}
-
 	
-	static func getCacheImage(completion: @escaping ([URL]) -> Void)  {
+	// New method to rename an image file
+	class func renameImage(oldName: String, newName: String) -> Bool {
+		guard let imagesDirectory = getImagesDirectory(),
+			  let oldName1 = sha256(from: oldName),
+			  let newName1 = sha256(from: newName)
+		else {
+			print("Images directory not found")
+			return false
+		}
 		
-		Task.detached(priority: .background) {
-			var results:[URL] = []
+		let oldPath = imagesDirectory.appendingPathComponent(oldName1).appendingPathExtension("png")
+		let newPath = imagesDirectory.appendingPathComponent(newName1).appendingPathExtension("png")
+		
+		if !FileManager.default.fileExists(atPath: oldPath.path) {
+			print("File not found at path: \(oldPath.absoluteString)")
+			return false
+		}
+		
+		do {
+			try FileManager.default.moveItem(at: oldPath, to: newPath)
 			
-			guard let cache = getCache() else{
+			if let index = Defaults[.images].firstIndex(of: oldName){
+				Defaults[.images][index] = newName
+			}
+			
+			print("File renamed from \(oldName) to \(newName)")
+			
+			return true
+		} catch {
+			print("Failed to rename file: \(error.localizedDescription)")
+			return false
+		}
+	}
+	
+	// Method to store the image in the local cache
+	class func storeImage(from url: String, at image: UIImage) async -> String? {
+		guard let imagesDirectory = getImagesDirectory(),
+			  let imageData = image.pngData(),
+			  let name = sha256(from: url) else {
+			print("Failed to convert image to PNG data")
+			return nil
+		}
+		
+		// Construct the full image path
+		let imagePath = imagesDirectory.appendingPathComponent(name).appendingPathExtension("png")
+		
+		// Save the image data to the file system
+		do {
+			try imageData.write(to: imagePath)
+			await MainActor.run {
+				Defaults[.images].insert(url, at: 0)
+			}
+			print("Image successfully saved at: \(imagePath)")
+			return imagePath.path
+		} catch {
+			print("Failed to save image: \(error.localizedDescription)")
+		}
+		
+		return nil
+	}
+	
+	
+	// Method to delete an image file
+	class func deleteImage(for url: String) async -> Bool {
+		guard let imagesDirectory = getImagesDirectory(),
+			  let name = sha256(from: url) else {
+			print("Failed to generate path for cached image")
+			return false
+		}
+		
+		// Construct the full image path
+		let imagePath = imagesDirectory.appendingPathComponent(name).appendingPathExtension("png")
+		
+		// Check if the file exists and delete it
+		if FileManager.default.fileExists(atPath: imagePath.path) {
+			do {
+				try FileManager.default.removeItem(at: imagePath)
 				await MainActor.run {
-					completion([])
+					Defaults[.images].removeAll(where: {$0 == url})
 				}
-				return
+				print("Image successfully deleted at: \(imagePath)")
+				return true
+			} catch {
+				print("Failed to delete image: \(error.localizedDescription)")
+				return false
+			}
+		} else {
+			print("Image not found at path: \(imagePath.absoluteString)")
+			return false
+		}
+	}
+	
+	// Method to load image from local cache if it exists
+	fileprivate static func loadImageFromCache(for url: String) async -> String? {
+		guard let imagesDirectory = getImagesDirectory(),
+			  let name = sha256(from: url) else {
+			print("Failed to generate path for cached image")
+			return nil
+		}
+		
+		// Construct the full image path
+		let imagePath = imagesDirectory.appendingPathComponent(name).appendingPathExtension("png")
+		
+		// Check if the file exists at the path
+		if FileManager.default.fileExists(atPath: imagePath.path) {
+			return imagePath.path
+		} else {
+			print("Image not found in cache")
+		}
+		
+		return nil
+	}
+	
+	// Download the image from a URL
+	fileprivate static func downloadImage(_ url: String) async -> UIImage? {
+		guard let url = URL(string: url) else {
+			print("Invalid URL: \(url)")
+			return nil
+		}
+		
+		let urlRequest = URLRequest(url: url)
+		
+		do {
+			let (data, response) = try await URLSession.shared.data(for: urlRequest)
+			
+			// Check HTTP response status
+			guard let response = response as? HTTPURLResponse else {
+				print("Invalid HTTP response")
+				return nil
 			}
 			
-			let cacheDirectoryURL = cache.diskStorage.directoryURL
-			
-			// 遍历缓存目录中的文件，生成对应的URL
-			if let directoryEnumerator = FileManager.default.enumerator(at: cacheDirectoryURL, includingPropertiesForKeys: nil) {
-				
-				for case let fileURL as URL in directoryEnumerator {
-					debugPrint(fileURL)
-					results.append(fileURL)
-				}
-				debugPrint(directoryEnumerator.allObjects)
+			guard 200...299 ~= response.statusCode else {
+				print("Failed with status code: \(response.statusCode)")
+				return nil
 			}
 			
-			await MainActor.run { [results] in
-				completion(results)
+			// Convert data to UIImage
+			guard let image = UIImage(data: data) else {
+				print("Failed to decode image from data")
+				return nil
+			}
+			
+			return image
+		} catch URLError.notConnectedToInternet {
+			print("No internet connection")
+			return nil
+		} catch URLError.timedOut {
+			print("Request timed out")
+			return nil
+		} catch {
+			print("Failed to download image: \(error.localizedDescription)")
+			return nil
+		}
+	}
+	
+	// Get the directory to store images in the App Group
+	fileprivate static func getImagesDirectory() -> URL? {
+		guard let containerURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.upush") else {
+			return nil
+		}
+		let imagesDirectory = containerURL.appendingPathComponent("Images")
+		
+		// If the directory doesn't exist, create it
+		if !FileManager.default.fileExists(atPath: imagesDirectory.path) {
+			do {
+				try FileManager.default.createDirectory(at: imagesDirectory, withIntermediateDirectories: true, attributes: nil)
+			} catch {
+				print("Failed to create images directory: \(error.localizedDescription)")
+				return nil
+			}
+		}
+		return imagesDirectory
+	}
+	
+	// Generate SHA-256 hash for a given URL
+	fileprivate static func sha256(from url: String) -> String? {
+		guard let urlData = url.data(using: .utf8) else { return nil }
+		let hashed = SHA256.hash(data: urlData)
+		return hashed.compactMap { String(format: "%02x", $0) }.joined()
+	}
+	
+
+	
+	class func deleteFilesNotInList(all allData:Bool = false) async {
+		
+		if allData{
+			await MainActor.run {
+				Defaults[.images] = []
 			}
 		}
 		
+		let fileManager = FileManager.default
+		
+		guard let imagesDirectory = getImagesDirectory() else {
+			return
+		}
+
+		do {
+			// 获取文件夹中所有文件的路径
+			let fileURLs = try fileManager.contentsOfDirectory(at: URL(fileURLWithPath: imagesDirectory.path), includingPropertiesForKeys: nil)
+			
+			for fileURL in fileURLs {
+				
+				let fileName = fileURL.lastPathComponent
+				// 检查文件是否在列表中
+				let validFileNames = allData ?  [] : Defaults[.images].compactMap({ sha256(from: $0) })
+				
+				if !validFileNames.contains(fileName) {
+					// 如果文件不在列表中，删除该文件
+					do {
+						try fileManager.removeItem(at: fileURL)
+						print("Deleted: \(fileName)")
+					} catch {
+						print("Failed to delete: \(fileName), error: \(error)")
+					}
+				}
+			}
+			
+		} catch {
+			print("Error reading contents of folder: \(error)")
+		}
 	}
+	
+	
+	
 	
 }

@@ -59,13 +59,11 @@
 		1938872F2CB9435B0049AA2B /* OtherModals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193886BD2CB9435B0049AA2B /* OtherModals.swift */; };
 		193887302CB9435B0049AA2B /* Extension+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193886F22CB9435B0049AA2B /* Extension+.swift */; };
 		193887312CB9435B0049AA2B /* PushServerModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193886C52CB9435B0049AA2B /* PushServerModal.swift */; };
-		193887322CB9435B0049AA2B /* PushupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193886FA2CB9435B0049AA2B /* PushupManager.swift */; };
+		193887322CB9435B0049AA2B /* UpushManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193886FA2CB9435B0049AA2B /* UpushManager.swift */; };
 		193887332CB9435B0049AA2B /* BadgeAutoMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193886C22CB9435B0049AA2B /* BadgeAutoMode.swift */; };
-		193887342CB9435B0049AA2B /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193886F72CB9435B0049AA2B /* AudioManager.swift */; };
 		193887352CB9435B0049AA2B /* image+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193886F42CB9435B0049AA2B /* image+.swift */; };
 		193887362CB9435B0049AA2B /* DefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193886ED2CB9435B0049AA2B /* DefaultsKeys.swift */; };
 		193887372CB9435B0049AA2B /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193886EE2CB9435B0049AA2B /* Mock.swift */; };
-		193887382CB9435B0049AA2B /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193886FC2CB9435B0049AA2B /* ImageManager.swift */; };
 		193887392CB9435B0049AA2B /* PageModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193886BE2CB9435B0049AA2B /* PageModal.swift */; };
 		1938873A2CB9435B0049AA2B /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193886F92CB9435B0049AA2B /* HapticsManager.swift */; };
 		193887472CB943A40049AA2B /* NotificationServiceExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1938873F2CB943A40049AA2B /* NotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -77,11 +75,8 @@
 		193887B92CB947590049AA2B /* QRScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 193887B82CB947590049AA2B /* QRScanner */; };
 		193887BC2CB9476E0049AA2B /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 193887BB2CB9476E0049AA2B /* SwiftyJSON */; };
 		193887BF2CB947900049AA2B /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 193887BE2CB947900049AA2B /* RealmSwift */; };
-		193887C22CB947A60049AA2B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 193887C12CB947A60049AA2B /* Kingfisher */; };
-		193887DD2CB948B90049AA2B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 193887DC2CB948B90049AA2B /* Kingfisher */; };
 		193887DE2CB948D50049AA2B /* OtherModals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193886BD2CB9435B0049AA2B /* OtherModals.swift */; };
 		193887DF2CB948D50049AA2B /* BaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193886EF2CB9435B0049AA2B /* BaseConfig.swift */; };
-		193887E02CB948D50049AA2B /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193886FC2CB9435B0049AA2B /* ImageManager.swift */; };
 		193887E12CB948FE0049AA2B /* alarm.caf in Resources */ = {isa = PBXBuildFile; fileRef = 193886C72CB9435B0049AA2B /* alarm.caf */; };
 		193887E22CB948FE0049AA2B /* anticipate.caf in Resources */ = {isa = PBXBuildFile; fileRef = 193886C82CB9435B0049AA2B /* anticipate.caf */; };
 		193887E32CB948FE0049AA2B /* bell.caf in Resources */ = {isa = PBXBuildFile; fileRef = 193886C92CB9435B0049AA2B /* bell.caf */; };
@@ -117,8 +112,6 @@
 		193888042CB9492B0049AA2B /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 193888032CB9492B0049AA2B /* Defaults */; };
 		193888062CB9492B0049AA2B /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 193888052CB9492B0049AA2B /* SwiftyJSON */; };
 		193888082CB9492B0049AA2B /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 193888072CB9492B0049AA2B /* RealmSwift */; };
-		1938880A2CB9492B0049AA2B /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 193888072CB9492B0049AA2B /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		1938880C2CB9492B0049AA2B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1938880B2CB9492B0049AA2B /* Kingfisher */; };
 		1938880F2CB949910049AA2B /* MessageModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193886BB2CB9435B0049AA2B /* MessageModal.swift */; };
 		193888102CB949910049AA2B /* ResponseModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193886BC2CB9435B0049AA2B /* ResponseModal.swift */; };
 		193888112CB949910049AA2B /* OtherModals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193886BD2CB9435B0049AA2B /* OtherModals.swift */; };
@@ -135,12 +128,18 @@
 		1938881C2CB949910049AA2B /* RealmDefaultConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193886F02CB9435B0049AA2B /* RealmDefaultConfiguration.swift */; };
 		1938881F2CB94B0E0049AA2B /* Extension+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193886F22CB9435B0049AA2B /* Extension+.swift */; };
 		193888202CB94B230049AA2B /* cryptoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193886FB2CB9435B0049AA2B /* cryptoManager.swift */; };
-		193888212CB94B2E0049AA2B /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193886FC2CB9435B0049AA2B /* ImageManager.swift */; };
-		193888222CB94B940049AA2B /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 193887BE2CB947900049AA2B /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		193888252CB94D430049AA2B /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 193888242CB94D430049AA2B /* Kingfisher */; };
-		193888262CB94D530049AA2B /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193886FC2CB9435B0049AA2B /* ImageManager.swift */; };
 		193888272CB94D760049AA2B /* BaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193886EF2CB9435B0049AA2B /* BaseConfig.swift */; };
 		193888282CB94EC70049AA2B /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193886F32CB9435B0049AA2B /* View+.swift */; };
+		198397262CB98352008C3BD5 /* Extension+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193886F22CB9435B0049AA2B /* Extension+.swift */; };
+		198397272CB9835C008C3BD5 /* Extension+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193886F22CB9435B0049AA2B /* Extension+.swift */; };
+		1983974D2CBABBFA008C3BD5 /* InAppNotificationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1983974C2CBABBF7008C3BD5 /* InAppNotificationExtension.swift */; };
+		198397E52CBBFCDC008C3BD5 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 198397E42CBBFCDC008C3BD5 /* Defaults */; };
+		198397E72CBBFCEB008C3BD5 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 198397E62CBBFCEB008C3BD5 /* Defaults */; };
+		198397F02CBD2009008C3BD5 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198397EF2CBD1FFE008C3BD5 /* ImageManager.swift */; };
+		198397F12CBE8125008C3BD5 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198397EF2CBD1FFE008C3BD5 /* ImageManager.swift */; };
+		198397F22CBE84BF008C3BD5 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198397EF2CBD1FFE008C3BD5 /* ImageManager.swift */; };
+		198397F32CBE8DBB008C3BD5 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198397EF2CBD1FFE008C3BD5 /* ImageManager.swift */; };
+		19FF61982CC24DD40071A0BF /* BsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FF616C2CC24DD40071A0BF /* BsyncImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -187,7 +186,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				1938880A2CB9492B0049AA2B /* RealmSwift in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -198,7 +196,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				193888222CB94B940049AA2B /* RealmSwift in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,17 +259,18 @@
 		193886F32CB9435B0049AA2B /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		193886F42CB9435B0049AA2B /* image+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "image+.swift"; sourceTree = "<group>"; };
 		193886F62CB9435B0049AA2B /* RealmProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmProxy.swift; sourceTree = "<group>"; };
-		193886F72CB9435B0049AA2B /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		193886F82CB9435B0049AA2B /* Monitors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monitors.swift; sourceTree = "<group>"; };
 		193886F92CB9435B0049AA2B /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
-		193886FA2CB9435B0049AA2B /* PushupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushupManager.swift; sourceTree = "<group>"; };
+		193886FA2CB9435B0049AA2B /* UpushManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpushManager.swift; sourceTree = "<group>"; };
 		193886FB2CB9435B0049AA2B /* cryptoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cryptoManager.swift; sourceTree = "<group>"; };
-		193886FC2CB9435B0049AA2B /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		1938873F2CB943A40049AA2B /* NotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		193887502CB943BD0049AA2B /* NotificationContentExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationContentExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		193887522CB943BD0049AA2B /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		193887542CB943BD0049AA2B /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
 		193887682CB943D20049AA2B /* ShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		1983974C2CBABBF7008C3BD5 /* InAppNotificationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppNotificationExtension.swift; sourceTree = "<group>"; };
+		198397EF2CBD1FFE008C3BD5 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
+		19FF616C2CC24DD40071A0BF /* BsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BsyncImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -377,7 +375,6 @@
 				193887BC2CB9476E0049AA2B /* SwiftyJSON in Frameworks */,
 				193887B92CB947590049AA2B /* QRScanner in Frameworks */,
 				193887B62CB947470049AA2B /* Defaults in Frameworks */,
-				193887C22CB947A60049AA2B /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,7 +382,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1938880C2CB9492B0049AA2B /* Kingfisher in Frameworks */,
 				193888082CB9492B0049AA2B /* RealmSwift in Frameworks */,
 				193888062CB9492B0049AA2B /* SwiftyJSON in Frameworks */,
 				193888042CB9492B0049AA2B /* Defaults in Frameworks */,
@@ -396,7 +392,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				193887DD2CB948B90049AA2B /* Kingfisher in Frameworks */,
+				198397E72CBBFCEB008C3BD5 /* Defaults in Frameworks */,
 				193887552CB943BD0049AA2B /* UserNotificationsUI.framework in Frameworks */,
 				193887532CB943BD0049AA2B /* UserNotifications.framework in Frameworks */,
 			);
@@ -406,7 +402,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				193888252CB94D430049AA2B /* Kingfisher in Frameworks */,
+				198397E52CBBFCDC008C3BD5 /* Defaults in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,6 +506,7 @@
 		193886EC2CB9435B0049AA2B /* ThirdViews */ = {
 			isa = PBXGroup;
 			children = (
+				1983974C2CBABBF7008C3BD5 /* InAppNotificationExtension.swift */,
 				193886E82CB9435B0049AA2B /* MusicManager.swift */,
 				193886E92CB9435B0049AA2B /* ToastView.swift */,
 				193886EA2CB9435B0049AA2B /* ParallaxImageView.swift */,
@@ -542,13 +539,13 @@
 		193886FD2CB9435B0049AA2B /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				198397EF2CBD1FFE008C3BD5 /* ImageManager.swift */,
 				193886F62CB9435B0049AA2B /* RealmProxy.swift */,
-				193886F72CB9435B0049AA2B /* AudioManager.swift */,
 				193886F82CB9435B0049AA2B /* Monitors.swift */,
 				193886F92CB9435B0049AA2B /* HapticsManager.swift */,
-				193886FA2CB9435B0049AA2B /* PushupManager.swift */,
+				193886FA2CB9435B0049AA2B /* UpushManager.swift */,
+				19FF616C2CC24DD40071A0BF /* BsyncImageView.swift */,
 				193886FB2CB9435B0049AA2B /* cryptoManager.swift */,
-				193886FC2CB9435B0049AA2B /* ImageManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -591,7 +588,6 @@
 				193887B82CB947590049AA2B /* QRScanner */,
 				193887BB2CB9476E0049AA2B /* SwiftyJSON */,
 				193887BE2CB947900049AA2B /* RealmSwift */,
-				193887C12CB947A60049AA2B /* Kingfisher */,
 			);
 			productName = upush;
 			productReference = 193886A92CB9434E0049AA2B /* upush.app */;
@@ -618,7 +614,6 @@
 				193888032CB9492B0049AA2B /* Defaults */,
 				193888052CB9492B0049AA2B /* SwiftyJSON */,
 				193888072CB9492B0049AA2B /* RealmSwift */,
-				1938880B2CB9492B0049AA2B /* Kingfisher */,
 			);
 			productName = NotificationServiceExtension;
 			productReference = 1938873F2CB943A40049AA2B /* NotificationServiceExtension.appex */;
@@ -641,7 +636,7 @@
 			);
 			name = NotificationContentExtension;
 			packageProductDependencies = (
-				193887DC2CB948B90049AA2B /* Kingfisher */,
+				198397E62CBBFCEB008C3BD5 /* Defaults */,
 			);
 			productName = NotificationContentExtension;
 			productReference = 193887502CB943BD0049AA2B /* NotificationContentExtension.appex */;
@@ -664,7 +659,7 @@
 			);
 			name = ShareExtension;
 			packageProductDependencies = (
-				193888242CB94D430049AA2B /* Kingfisher */,
+				198397E42CBBFCDC008C3BD5 /* Defaults */,
 			);
 			productName = ShareExtension;
 			productReference = 193887682CB943D20049AA2B /* ShareExtension.appex */;
@@ -709,7 +704,6 @@
 				193887B72CB947590049AA2B /* XCRemoteSwiftPackageReference "QRScanner" */,
 				193887BA2CB9476E0049AA2B /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				193887BD2CB947900049AA2B /* XCRemoteSwiftPackageReference "realm-swift" */,
-				193887C02CB947A60049AA2B /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 193886AA2CB9434E0049AA2B /* Products */;
@@ -825,6 +819,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1938871E2CB9435B0049AA2B /* CryptoModal.swift in Sources */,
+				19FF61982CC24DD40071A0BF /* BsyncImageView.swift in Sources */,
 				1938871F2CB9435B0049AA2B /* RealmProxy.swift in Sources */,
 				193887202CB9435B0049AA2B /* QuickActionModal.swift in Sources */,
 				193887212CB9435B0049AA2B /* RealmDefaultConfiguration.swift in Sources */,
@@ -835,7 +830,9 @@
 				193887262CB9435B0049AA2B /* MessageModal.swift in Sources */,
 				193887272CB9435B0049AA2B /* Monitors.swift in Sources */,
 				193887282CB9435B0049AA2B /* ToastView.swift in Sources */,
+				1983974D2CBABBFA008C3BD5 /* InAppNotificationExtension.swift in Sources */,
 				193887292CB9435B0049AA2B /* ParallaxImageView.swift in Sources */,
+				198397F02CBD2009008C3BD5 /* ImageManager.swift in Sources */,
 				1938872A2CB9435B0049AA2B /* FullSwipeNavigationStack.swift in Sources */,
 				1938872B2CB9435B0049AA2B /* cryptoManager.swift in Sources */,
 				1938872C2CB9435B0049AA2B /* AppIconModal.swift in Sources */,
@@ -844,13 +841,11 @@
 				1938872F2CB9435B0049AA2B /* OtherModals.swift in Sources */,
 				193887302CB9435B0049AA2B /* Extension+.swift in Sources */,
 				193887312CB9435B0049AA2B /* PushServerModal.swift in Sources */,
-				193887322CB9435B0049AA2B /* PushupManager.swift in Sources */,
+				193887322CB9435B0049AA2B /* UpushManager.swift in Sources */,
 				193887332CB9435B0049AA2B /* BadgeAutoMode.swift in Sources */,
-				193887342CB9435B0049AA2B /* AudioManager.swift in Sources */,
 				193887352CB9435B0049AA2B /* image+.swift in Sources */,
 				193887362CB9435B0049AA2B /* DefaultsKeys.swift in Sources */,
 				193887372CB9435B0049AA2B /* Mock.swift in Sources */,
-				193887382CB9435B0049AA2B /* ImageManager.swift in Sources */,
 				193887392CB9435B0049AA2B /* PageModal.swift in Sources */,
 				1938873A2CB9435B0049AA2B /* HapticsManager.swift in Sources */,
 			);
@@ -860,7 +855,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				193888212CB94B2E0049AA2B /* ImageManager.swift in Sources */,
+				198397F22CBE84BF008C3BD5 /* ImageManager.swift in Sources */,
 				193888202CB94B230049AA2B /* cryptoManager.swift in Sources */,
 				1938881F2CB94B0E0049AA2B /* Extension+.swift in Sources */,
 				1938880F2CB949910049AA2B /* MessageModal.swift in Sources */,
@@ -884,9 +879,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				198397F32CBE8DBB008C3BD5 /* ImageManager.swift in Sources */,
+				198397262CB98352008C3BD5 /* Extension+.swift in Sources */,
 				193887DE2CB948D50049AA2B /* OtherModals.swift in Sources */,
 				193887DF2CB948D50049AA2B /* BaseConfig.swift in Sources */,
-				193887E02CB948D50049AA2B /* ImageManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -894,9 +890,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				198397F12CBE8125008C3BD5 /* ImageManager.swift in Sources */,
+				198397272CB9835C008C3BD5 /* Extension+.swift in Sources */,
 				193888282CB94EC70049AA2B /* View+.swift in Sources */,
 				193888272CB94D760049AA2B /* BaseConfig.swift in Sources */,
-				193888262CB94D530049AA2B /* ImageManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1058,18 +1055,26 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = upush/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = upush;
+				INFOPLIST_KEY_NSCameraUsageDescription = "we need access to you Camera";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your photo album！";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.uuneo.upush;
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = me.uuneo.Meoworld;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1090,18 +1095,26 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = upush/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = upush;
+				INFOPLIST_KEY_NSCameraUsageDescription = "we need access to you Camera";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your photo album！";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.uuneo.upush;
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = me.uuneo.Meoworld;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1119,15 +1132,19 @@
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotificationServiceExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.uuneo.upush.NotificationServiceExtension;
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = me.uuneo.Meoworld.NotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1145,15 +1162,19 @@
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotificationServiceExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.uuneo.upush.NotificationServiceExtension;
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = me.uuneo.Meoworld.NotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1171,15 +1192,19 @@
 				INFOPLIST_FILE = NotificationContentExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotificationContentExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.uuneo.upush.NotificationContentExtension;
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = me.uuneo.Meoworld.NotificationContentExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1197,15 +1222,19 @@
 				INFOPLIST_FILE = NotificationContentExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotificationContentExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.uuneo.upush.NotificationContentExtension;
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = me.uuneo.Meoworld.NotificationContentExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1223,15 +1252,19 @@
 				INFOPLIST_FILE = ShareExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ShareExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.uuneo.upush.ShareExtension;
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = me.uuneo.Meoworld.ShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1249,15 +1282,19 @@
 				INFOPLIST_FILE = ShareExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ShareExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = me.uuneo.upush.ShareExtension;
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = me.uuneo.Meoworld.ShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1347,14 +1384,6 @@
 				kind = branch;
 			};
 		};
-		193887C02CB947A60049AA2B /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/uuneo/Kingfisher.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1378,16 +1407,6 @@
 			package = 193887BD2CB947900049AA2B /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
 		};
-		193887C12CB947A60049AA2B /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 193887C02CB947A60049AA2B /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
-		};
-		193887DC2CB948B90049AA2B /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 193887C02CB947A60049AA2B /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
-		};
 		193888032CB9492B0049AA2B /* Defaults */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 193887B42CB947470049AA2B /* XCRemoteSwiftPackageReference "Defaults" */;
@@ -1403,15 +1422,15 @@
 			package = 193887BD2CB947900049AA2B /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
 		};
-		1938880B2CB9492B0049AA2B /* Kingfisher */ = {
+		198397E42CBBFCDC008C3BD5 /* Defaults */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 193887C02CB947A60049AA2B /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
+			package = 193887B42CB947470049AA2B /* XCRemoteSwiftPackageReference "Defaults" */;
+			productName = Defaults;
 		};
-		193888242CB94D430049AA2B /* Kingfisher */ = {
+		198397E62CBBFCEB008C3BD5 /* Defaults */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 193887C02CB947A60049AA2B /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
+			package = 193887B42CB947470049AA2B /* XCRemoteSwiftPackageReference "Defaults" */;
+			productName = Defaults;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -8,24 +8,29 @@
 import SwiftUI
 import RealmSwift
 import Defaults
+import UniformTypeIdentifiers
 
 struct ContentView: View {
-	
-	@Environment(\.scenePhase) var scenePhase
-	@Environment(PushupManager.self) private var manager
+	@Environment(\.colorScheme) private var colorScheme
+	@Environment(\.scenePhase) private var scenePhase
+	@Environment(UpushManager.self) private var manager
 	@StateObject private var monitor = Monitors()
-	@ObservedResults(Message.self) var messages
-	@Default(.servers) var servers
-	@Default(.firstStart) var firstStart
+	@ObservedResults(Message.self) private var messages
+	@Default(.servers) private var servers
+	@Default(.firstStart) private var firstStart
+	@Default(.badgeMode) private var badgeMode
 	@State private var noShow:NavigationSplitViewVisibility = .detailOnly
 	@State private  var showAlart:Bool = false
 	@State private  var activeName:String = ""
 	@State private var messagesPath: [String] = []
-	
-
+	@Environment(\.modelContext) private var ctx
 	
 	var readCount:Int{
 		messages.where({!$0.read}).count
+	}
+	
+	var tabColor2:Color{
+		colorScheme == .dark ? Color.white : Color.black
 	}
 	
 	var body: some View {
@@ -36,15 +41,6 @@ struct ContentView: View {
 			}else{
 				IphoneHomeView()
 			}
-		}
-		.dropDestination(for: Data.self) { items, location in
-			Task.detached(priority: .background) {
-				for item in items {
-					await ImageManager.storeImage(data: item, key: UUID().uuidString)
-				}
-				Toast.shared.present(title: String(localized: "保存成功"), symbol: "photo.badge.checkmark")
-			}
-			return true
 		}
 		.sheet(isPresented: manager.sheetShow){ ContentSheetViewPage() }
 		.fullScreenCover(isPresented: manager.fullShow){ ContentFullViewPage() }
@@ -61,20 +57,25 @@ struct ContentView: View {
 					.destructive(
 						Text( String(localized: "删除") ),
 						action: {
-							
-							//							realm.delete(read: activeName == "alldelnotread")
-							
+							RealmProxy.shared.read(activeName == "alldelnotread")
 						}
 					), secondaryButton: .cancel())
 		}
 		.onAppear{
 			if firstStart {
 				for msg in Message.messages{
-					$messages.append(msg)
+					if let realm = try? Realm(){
+						try? realm.write {
+							realm.add(msg)
+						}
+					}
 				}
 				self.firstStart = false
 			}
+			
 		}
+		
+		
 		
 
 		
@@ -91,37 +92,40 @@ struct ContentView: View {
 			
 			// MARK: 信息页面
 			
-			MessagesView()
-				.tag(TabPage.message)
+			GroupMessageView()
 				.badge(readCount)
 				.tabItem {
 					Label(String(localized: "消息"), systemImage: "ellipsis.message")
+						.symbolRenderingMode(.palette)
+						.foregroundStyle( .green, tabColor2)
+//						.symbolEffect(.variableColor.cumulative.dimInactiveLayers.reversing, options: .repeat(.continuous))
 				}
+				.tag(TabPage.message)
 			
 			// MARK: 设置页面
 			
 			SettingsView()
 				.tabItem {
-					Label(String(localized: "设置"), systemImage: "gearshape")
+					Label(String(localized: "设置"), systemImage: "gear.badge.questionmark")
+						.symbolRenderingMode(.palette)
+						.foregroundStyle( .green, tabColor2)
+//						.symbolEffect(.pulse.byLayer, options: .repeat(.continuous))
 					
 				}
 				.tag(TabPage.setting)
 			
 			
 		}
+		
 	}
 	
 	@ViewBuilder
 	func IpadHomeView() -> some View{
 		NavigationSplitView(columnVisibility: $noShow) {
 			SettingsView()
-				.navigationTitle(String(localized: "设置"))
-		} detail: {
-			NavigationStack{
-				MessagesView()
-					.navigationTitle(String(localized: "消息"))
 				
-			}
+		} detail: {
+			GroupMessageView()
 		}
 		
 	}
@@ -132,13 +136,7 @@ struct ContentView: View {
 		
 		switch manager.fullPage {
 		case .login:
-			ChangePushKeyView()
-				.onAppear{
-					DispatchQueue.main.asyncAfter(deadline: .now() + 1){
-						manager.fullPage = .none
-					}
-					
-				}
+			ChangeKeyWithEmailView()
 		case .servers:
 			ServersConfigView(showClose: true)
 		case .music:
@@ -228,26 +226,17 @@ extension ContentView{
 		}
 	}
 	
-	
-	
-	
 	func backgroundModeHandler(oldValue:ScenePhase, newValue: ScenePhase){
 		switch newValue{
 		case .active:
-#if DEBUG
-			print("app active")
-#endif
-			stopCallNotificationProcessor()
 			
+			stopCallNotificationProcessor()
 			if let name = QuickAction.selectAction?.userInfo?["name"] as? String{
 				QuickAction.selectAction = nil
-#if DEBUG
-				print(name)
-#endif
 				manager.page = .message
 				switch name{
 				case "allread":
-//					realm.readMessage()
+					RealmProxy.shared.read()
 					Toast.shared.present(title: String(localized: "操作成功"), symbol: "questionmark.circle.dashed")
 				case "alldelread","alldelnotread":
 					self.activeName = name
@@ -265,20 +254,9 @@ extension ContentView{
 			firstStart = false
 			
 		default:
-			
 			break
-			
-			
 		}
-		
-		//		let toolManager = ToolsManager.shared
-		//
-		//		if toolManager.badgeMode == .auto{
-		//			toolManager.changeBadge(badge: realm.NReadCount())
-		//		}else{
-		//			toolManager.changeBadge(badge: -1)
-		//		}
-			
+		RealmProxy.ChangeBadge()
 	}
 	
 	/// 停止响铃
@@ -291,5 +269,5 @@ extension ContentView{
 
 #Preview {
 	ContentView()
-		.environment(PushupManager.shared)
+		.environment(UpushManager.shared)
 }

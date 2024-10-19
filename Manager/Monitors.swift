@@ -20,7 +20,7 @@ class Monitors: ObservableObject {
     @Published var isConnected: Bool = true
     
     // notification
-    @Published var isAuthorized: Bool = false
+    @Published var isAuthorized: Bool = true
     
     init() {
       

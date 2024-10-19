@@ -45,8 +45,12 @@ struct ExampleView: View {
                             RingtongView()
                                 .toolbar(.hidden, for: .tabBar)
                         } label: {
-                            Image(systemName: "headphones.circle")
-                                .foregroundStyle(Color.gray)
+							Image(systemName: "headphones.circle")
+								.scaleEffect(0.9)
+								.symbolRenderingMode(.palette)
+								.foregroundStyle(.tint, Color.primary)
+//								.symbolEffect(.bounce.down.byLayer, options: .repeat(.continuous))
+                           
                         }
                     }
                 
@@ -71,6 +75,10 @@ struct ExampleView: View {
 						.fontWeight(.bold)
 					Spacer()
 					Image(systemName: "doc.on.doc")
+						
+						.symbolRenderingMode(.palette)
+						.foregroundStyle(.tint, Color.primary)
+//						.symbolEffect(.bounce.down.byLayer, options: .repeat(.periodic(delay: 2.0)))
 						.padding(.horizontal)
 						.onTapGesture {
 							UIPasteboard.general.string = resultUrl
@@ -78,6 +86,10 @@ struct ExampleView: View {
 							Toast.shared.present(title: String(localized:  "复制成功"), symbol: "document.on.document")
 						}
 					Image(systemName: "safari")
+						.scaleEffect(1.3)
+						.symbolRenderingMode(.palette)
+						.foregroundStyle(.tint, Color.primary)
+//						.symbolEffect(.rotate.byLayer, options: .repeat(.periodic(delay: 2.0)))
 						.onTapGesture {
 							
 							let ok =  self.health(item: servers[pickerSeletion])

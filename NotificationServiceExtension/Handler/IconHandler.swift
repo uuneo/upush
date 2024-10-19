@@ -15,10 +15,10 @@ class IconHandler: NotificationContentHandler{
             let userInfo = bestAttemptContent.userInfo
 			
             var avatar = INImage(named: Defaults[.appIcon].logo)
-            
+			
 
             if let imageUrl = userInfo["icon"] as? String,
-               let imageFileUrl = await ImageManager.downloadImage(imageUrl){
+			   let imageFileUrl = await ImageManager.fetchImage(from: imageUrl){
                 
                 avatar = INImage(imageData: NSData(contentsOfFile: imageFileUrl)! as Data)
                 

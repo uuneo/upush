@@ -35,7 +35,7 @@ class ArchiveHandler: NotificationContentHandler{
             let icon = userInfo["icon"] as? String
             
             if group == nil{
-                bestAttemptContent.threadIdentifier = NSLocalizedString("defultGroup", comment: "")
+				bestAttemptContent.threadIdentifier = String(localized: "默认")
             }
             
             var mode:String? {
@@ -59,7 +59,9 @@ class ArchiveHandler: NotificationContentHandler{
 				}
                 message.icon = icon
                 message.createDate = Date()
-                message.mode = mode
+				if let mode {
+					message.mode = mode
+				}
                 realm?.add(message)
             }
         }

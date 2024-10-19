@@ -11,7 +11,7 @@ import RealmSwift
 struct MessageView: View {
 	
 	
-	@Environment(PushupManager.self) private var manager
+	@Environment(UpushManager.self) private var manager
 	@ObservedRealmObject var message:Message
 	
     var searchText:String = ""
@@ -80,9 +80,9 @@ struct MessageView: View {
 		
        
 		.onAppear{
-			message.update { message in
-				message?.read = true
-			}
+//			message.update { message in
+//				message?.read = true
+//			}
 		}
         
         
@@ -136,11 +136,11 @@ struct MessageView: View {
 #Preview {
     
     List {
-        MessageView(message: Message(value: [ "id":"123","title":"123","read":true,"icon":"error","group":"123","image":"https://day.app/assets/images/avatar.jpg","body":"123"]))
+		MessageView(message: Message.messages.first!)
             .frame(width: 300)
             .listRowBackground(Color.clear)
             .listSectionSeparator(.hidden)
-			.environment(PushupManager.shared)
+			.environment(UpushManager.shared)
         
     }.listStyle(GroupedListStyle())
     
