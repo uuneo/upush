@@ -111,7 +111,6 @@
 		193888002CB948FE0049AA2B /* update.caf in Resources */ = {isa = PBXBuildFile; fileRef = 193886E62CB9435B0049AA2B /* update.caf */; };
 		193888042CB9492B0049AA2B /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 193888032CB9492B0049AA2B /* Defaults */; };
 		193888062CB9492B0049AA2B /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 193888052CB9492B0049AA2B /* SwiftyJSON */; };
-		193888082CB9492B0049AA2B /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 193888072CB9492B0049AA2B /* RealmSwift */; };
 		1938880F2CB949910049AA2B /* MessageModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193886BB2CB9435B0049AA2B /* MessageModal.swift */; };
 		193888102CB949910049AA2B /* ResponseModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193886BC2CB9435B0049AA2B /* ResponseModal.swift */; };
 		193888112CB949910049AA2B /* OtherModals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193886BD2CB9435B0049AA2B /* OtherModals.swift */; };
@@ -139,10 +138,10 @@
 		198397F12CBE8125008C3BD5 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198397EF2CBD1FFE008C3BD5 /* ImageManager.swift */; };
 		198397F22CBE84BF008C3BD5 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198397EF2CBD1FFE008C3BD5 /* ImageManager.swift */; };
 		198397F32CBE8DBB008C3BD5 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198397EF2CBD1FFE008C3BD5 /* ImageManager.swift */; };
-		19DA3B7E2CC3FDC3009F216A /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 193888072CB9492B0049AA2B /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		19DA3B802CC3FDD1009F216A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 19DA3B7F2CC3FDD1009F216A /* RealmSwift */; };
-		19DA3B812CC3FDD1009F216A /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 19DA3B7F2CC3FDD1009F216A /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		19DA3B832CC3FDE1009F216A /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 193887BE2CB947900049AA2B /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		19DA3B852CC40167009F216A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 19DA3B842CC40167009F216A /* RealmSwift */; };
+		19DA3B882CC40174009F216A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 19DA3B872CC40174009F216A /* RealmSwift */; };
+		19DA3B8B2CC401B7009F216A /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 19DA3B8A2CC401B7009F216A /* SwiftyJSON */; };
 		19FF61982CC24DD40071A0BF /* BsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FF616C2CC24DD40071A0BF /* BsyncImageView.swift */; };
 /* End PBXBuildFile section */
 
@@ -190,7 +189,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				19DA3B7E2CC3FDC3009F216A /* RealmSwift in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,7 +210,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				19DA3B812CC3FDD1009F216A /* RealmSwift in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -399,7 +396,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				193888082CB9492B0049AA2B /* RealmSwift in Frameworks */,
+				19DA3B852CC40167009F216A /* RealmSwift in Frameworks */,
 				193888062CB9492B0049AA2B /* SwiftyJSON in Frameworks */,
 				193888042CB9492B0049AA2B /* Defaults in Frameworks */,
 			);
@@ -409,9 +406,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19DA3B802CC3FDD1009F216A /* RealmSwift in Frameworks */,
+				19DA3B882CC40174009F216A /* RealmSwift in Frameworks */,
 				198397E72CBBFCEB008C3BD5 /* Defaults in Frameworks */,
 				193887552CB943BD0049AA2B /* UserNotificationsUI.framework in Frameworks */,
+				19DA3B8B2CC401B7009F216A /* SwiftyJSON in Frameworks */,
 				193887532CB943BD0049AA2B /* UserNotifications.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -631,7 +629,7 @@
 			packageProductDependencies = (
 				193888032CB9492B0049AA2B /* Defaults */,
 				193888052CB9492B0049AA2B /* SwiftyJSON */,
-				193888072CB9492B0049AA2B /* RealmSwift */,
+				19DA3B842CC40167009F216A /* RealmSwift */,
 			);
 			productName = NotificationServiceExtension;
 			productReference = 1938873F2CB943A40049AA2B /* NotificationServiceExtension.appex */;
@@ -656,7 +654,8 @@
 			name = NotificationContentExtension;
 			packageProductDependencies = (
 				198397E62CBBFCEB008C3BD5 /* Defaults */,
-				19DA3B7F2CC3FDD1009F216A /* RealmSwift */,
+				19DA3B872CC40174009F216A /* RealmSwift */,
+				19DA3B8A2CC401B7009F216A /* SwiftyJSON */,
 			);
 			productName = NotificationContentExtension;
 			productReference = 193887502CB943BD0049AA2B /* NotificationContentExtension.appex */;
@@ -1437,11 +1436,6 @@
 			package = 193887BA2CB9476E0049AA2B /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
 		};
-		193888072CB9492B0049AA2B /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 193887BD2CB947900049AA2B /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = RealmSwift;
-		};
 		198397E42CBBFCDC008C3BD5 /* Defaults */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 193887B42CB947470049AA2B /* XCRemoteSwiftPackageReference "Defaults" */;
@@ -1452,10 +1446,20 @@
 			package = 193887B42CB947470049AA2B /* XCRemoteSwiftPackageReference "Defaults" */;
 			productName = Defaults;
 		};
-		19DA3B7F2CC3FDD1009F216A /* RealmSwift */ = {
+		19DA3B842CC40167009F216A /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 193887BD2CB947900049AA2B /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		19DA3B872CC40174009F216A /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 193887BD2CB947900049AA2B /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+		19DA3B8A2CC401B7009F216A /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 193887BA2CB9476E0049AA2B /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
