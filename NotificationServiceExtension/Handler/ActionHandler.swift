@@ -24,9 +24,12 @@ class ActionHandler: NotificationContentHandler{
     // MARK: 发送邮件
     private func mailAuto(_ userInfo:[AnyHashable: Any],_ action: String){
         Task{
-            if let jsonData = try? JSONSerialization.data(withJSONObject: userInfo, options: .prettyPrinted) {
-                let jsonString = String(data: jsonData, encoding: .utf8)
+            if let jsonData = try? JSONSerialization.data(withJSONObject: userInfo, options: .prettyPrinted),
+			   let jsonString = String(data: jsonData, encoding: .utf8)
+			{
+               
 //                ToolsManager.shared.sendMail(title: "自动化\(action)", text: jsonString ?? "数据编码失败")
+				debugPrint(jsonString)
             } else {
 #if DEBUG
                 print("转换失败")
