@@ -73,6 +73,8 @@ struct ContentView: View {
 				self.firstStart = false
 			}
 			
+			iCloudManager.ceshi()
+			
 		}
 		
 		

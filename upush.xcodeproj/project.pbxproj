@@ -142,6 +142,7 @@
 		19DA3B852CC40167009F216A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 19DA3B842CC40167009F216A /* RealmSwift */; };
 		19DA3B882CC40174009F216A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 19DA3B872CC40174009F216A /* RealmSwift */; };
 		19DA3B8B2CC401B7009F216A /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 19DA3B8A2CC401B7009F216A /* SwiftyJSON */; };
+		19DA3B8E2CC40D3A009F216A /* iCloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DA3B8D2CC40D2E009F216A /* iCloudManager.swift */; };
 		19FF61982CC24DD40071A0BF /* BsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19FF616C2CC24DD40071A0BF /* BsyncImageView.swift */; };
 /* End PBXBuildFile section */
 
@@ -284,6 +285,7 @@
 		193887682CB943D20049AA2B /* ShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		1983974C2CBABBF7008C3BD5 /* InAppNotificationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppNotificationExtension.swift; sourceTree = "<group>"; };
 		198397EF2CBD1FFE008C3BD5 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
+		19DA3B8D2CC40D2E009F216A /* iCloudManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCloudManager.swift; sourceTree = "<group>"; };
 		19FF616C2CC24DD40071A0BF /* BsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BsyncImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -555,6 +557,7 @@
 		193886FD2CB9435B0049AA2B /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				19DA3B8D2CC40D2E009F216A /* iCloudManager.swift */,
 				198397EF2CBD1FFE008C3BD5 /* ImageManager.swift */,
 				193886F62CB9435B0049AA2B /* RealmProxy.swift */,
 				193886F82CB9435B0049AA2B /* Monitors.swift */,
@@ -859,6 +862,7 @@
 				1938872E2CB9435B0049AA2B /* View+.swift in Sources */,
 				1938872F2CB9435B0049AA2B /* OtherModals.swift in Sources */,
 				193887302CB9435B0049AA2B /* Extension+.swift in Sources */,
+				19DA3B8E2CC40D3A009F216A /* iCloudManager.swift in Sources */,
 				193887312CB9435B0049AA2B /* PushServerModal.swift in Sources */,
 				193887322CB9435B0049AA2B /* UpushManager.swift in Sources */,
 				193887332CB9435B0049AA2B /* BadgeAutoMode.swift in Sources */,
@@ -1068,7 +1072,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = upush/upush.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"upush/Preview Content\"";
 				DEVELOPMENT_TEAM = FUWV6U942Q;
 				ENABLE_PREVIEWS = YES;
@@ -1108,7 +1112,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = upush/upush.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"upush/Preview Content\"";
 				DEVELOPMENT_TEAM = FUWV6U942Q;
 				ENABLE_PREVIEWS = YES;
@@ -1145,7 +1149,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = NotificationServiceExtension/NotificationServiceExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = FUWV6U942Q;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
@@ -1175,7 +1179,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = NotificationServiceExtension/NotificationServiceExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = FUWV6U942Q;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
@@ -1205,7 +1209,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = NotificationContentExtension/NotificationContentExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = FUWV6U942Q;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotificationContentExtension/Info.plist;
@@ -1235,7 +1239,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = NotificationContentExtension/NotificationContentExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = FUWV6U942Q;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotificationContentExtension/Info.plist;
@@ -1265,7 +1269,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = FUWV6U942Q;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShareExtension/Info.plist;
@@ -1295,7 +1299,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = FUWV6U942Q;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShareExtension/Info.plist;

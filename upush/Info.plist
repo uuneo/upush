@@ -4,6 +4,18 @@
 <dict>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>NSUbiquitousContainers</key>
+	<dict>
+		<key>iCloud.upush</key>
+		<dict>
+			<key>NSUbiquitousContainerIsDocumentScopePubli</key>
+			<true/>
+			<key>NSUbiquitousContainerName</key>
+			<string>upush</string>
+			<key>NSUbiquitousContainerSupportedFolderLevels</key>
+			<string>ANY</string>
+		</dict>
+	</dict>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
